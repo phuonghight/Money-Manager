@@ -1,7 +1,6 @@
 <script></script>
 
 <template>
-  <div>Login</div>
   <div class="mt-8">
     <div class="container px-8 mx-auto">
       <form action="">
