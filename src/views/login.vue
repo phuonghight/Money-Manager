@@ -9,7 +9,7 @@
           <label for="email" class="font-semibold text-gray-400 mb-2">Email Address</label>
           <input
             id="email"
-            class="pl-4 py-3 rounded-lg outline-none"
+            class="pl-4 py-3 rounded-lg outline-none focus:border focus:border-gray-600"
             name="email"
             type="email"
             placeholder="Enter your email"
@@ -21,7 +21,7 @@
           <label for="password" class="font-semibold text-gray-400 mb-2">Password</label>
           <input
             id="password"
-            class="pl-4 py-3 rounded-lg outline-none"
+            class="pl-4 py-3 rounded-lg outline-none focus:border focus:border-gray-600"
             name="password"
             type="password"
             placeholder="Enter your password"
