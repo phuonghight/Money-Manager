@@ -10,11 +10,9 @@ const onRegister = async (email, password, fullname) => {
   isPending.value = true;
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(res);
 
     const user = res.user;
-    console.log(user);
-    
+
     await updateProfile(user, {
       displayName: fullname
     });
@@ -28,6 +26,4 @@ const onRegister = async (email, password, fullname) => {
   }
 };
 
-export const useRegister = () => {
-  return { error, isPending, onRegister };
-};
+export const useRegister = () => ({ error, isPending, onRegister });

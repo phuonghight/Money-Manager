@@ -5,7 +5,7 @@ import { auth } from '@/config/firebase';
 const error = ref(null);
 const isPending = ref(false);
 
-const login = async (email, password) => {
+const onLogin = async (email, password) => {
   error.value = null;
   isPending.value = true;
   try {
@@ -20,6 +20,4 @@ const login = async (email, password) => {
   }
 };
 
-export const useLogin = () => {
-  return { error, isPending, login };
-};
+export const useLogin = () => ({ error, isPending, onLogin });

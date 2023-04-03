@@ -1,6 +1,10 @@
 <script setup>
-import { useRegister } from '@/composables/useRegister';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+import { useRegister } from '@/composables/useRegister';
+
+const router = useRouter();
 
 const email = ref('');
 const password = ref('');
@@ -9,6 +13,8 @@ const { error, isPending, onRegister } = useRegister();
 
 const registerHandler = async () => {
   await onRegister(email.value, password.value, fullname.value);
+
+  if (!error.value) router.push({ name: 'Home', params: {} });
 };
 </script>
 

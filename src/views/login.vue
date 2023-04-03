@@ -1,13 +1,17 @@
 <script setup>
 import { ref } from 'vue';
 import { useLogin } from '@/composables/useLogin.js';
+import { useRouter } from 'vue-router';
 
 const email = ref('');
 const password = ref('');
-const { error, isPending, login } = useLogin();
+const router = useRouter();
+const { error, isPending, onLogin } = useLogin();
 
 const loginHanler = async () => {
-  await login(email.value, password.value);
+  await onLogin(email.value, password.value);
+  console.log('succesful login');
+  if (!error.value) router.push({ name: 'Home', params: {} });
 };
 </script>
 
