@@ -8,10 +8,17 @@ import './assets/style/tailwind.css';
 import './assets/style/global.css';
 
 import { registerGlobalComponent } from './utils/import';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './config/firebase';
 
-const app = createApp(App);
-registerGlobalComponent(app);
-app.use(createPinia());
-app.use(router);
+let app;
 
-app.mount('#app');
+onAuthStateChanged(auth, () => {
+  if (!app) {
+    app = createApp(App);
+    registerGlobalComponent(app);
+    app.use(createPinia());
+    app.use(router);
+    app.mount('#app');
+  }
+});

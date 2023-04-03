@@ -1,4 +1,11 @@
+import { auth } from '@/config/firebase';
 import { createRouter, createWebHistory } from 'vue-router';
+
+const beforeProfileEnter = (to, from, next) => {
+  const user = auth.currentUser;
+  if (!user) next({ name: 'Login', params: {} });
+  else next();
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -6,7 +13,8 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'Profile',
-      component: () => import('@/views/profile.vue')
+      component: () => import('@/views/profile.vue'),
+      beforeEnter: beforeProfileEnter
     },
     {
       path: '/login',
