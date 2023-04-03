@@ -50,3 +50,38 @@ export const PROFILE_OPTIONS = [
     }
   }
 ];
+
+export const FOOTER_NAV_ITEMS = [
+  {
+    title: 'Home',
+    icon: 't2ico t2ico-category',
+    router: {
+      name: 'Home',
+      params: {}
+    }
+  },
+  {
+    title: 'Report',
+    icon: 't2ico t2ico-chart',
+    router: {
+      name: 'Report',
+      params: {}
+    }
+  },
+  {
+    title: 'Budget',
+    icon: 't2ico t2ico-presentation',
+    router: {
+      name: 'Budget',
+      params: {}
+    }
+  },
+  {
+    title: 'Profile',
+    icon: 't2ico t2ico-profile',
+    router: {
+      name: 'Profile',
+      params: {}
+    }
+  }
+];
