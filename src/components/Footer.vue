@@ -1,5 +1,12 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import { FOOTER_NAV_ITEMS } from '@/constant';
+
+const router = useRouter();
+
+const pushToNewTransactionView = () => {
+  router.push({ name: 'NewTransaction', params: {} });
+};
 </script>
 
 <template>
@@ -18,6 +25,7 @@ import { FOOTER_NAV_ITEMS } from '@/constant';
 
     <div
       class="absolute h-12 w-12 bg-primary -top-6 left-1/2 transform -translate-x-1/2 rounded-full flex justify-center items-center"
+      @click="pushToNewTransactionView"
     >
       <i class="t2ico t2ico-plus text-white text-2xl"></i>
     </div>

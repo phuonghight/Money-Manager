@@ -1,6 +1,8 @@
 import { auth } from '@/config/firebase';
 import { createRouter, createWebHistory } from 'vue-router';
 
+import NewTransactionMoreDetails from '@/views/new-transaction-more-details.vue';
+
 const beforeProfileEnter = (to, from, next) => {
   const user = auth.currentUser;
   if (!user) next({ name: 'Login', params: {} });
@@ -14,6 +16,7 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       meta: {
+        footer: true,
         header: {
           leading: true,
           title: 'Home',
@@ -30,8 +33,9 @@ const router = createRouter({
       path: '/budget',
       name: 'Budget',
       meta: {
-        leading: false,
+        footer: true,
         header: {
+          leading: false,
           title: 'My Budget',
           icon: 't2ico-document',
           'icon-router': {
@@ -46,6 +50,7 @@ const router = createRouter({
       path: '/report',
       name: 'Report',
       meta: {
+        footer: true,
         header: {
           leading: false,
           title: 'My Report',
@@ -62,8 +67,9 @@ const router = createRouter({
       path: '/profile',
       name: 'Profile',
       meta: {
-        leading: false,
+        footer: true,
         header: {
+          leading: false,
           title: 'My Profile',
           icon: 't2ico-setting',
           'icon-router': {
@@ -115,6 +121,47 @@ const router = createRouter({
       path: '/document',
       name: 'Document',
       component: () => import('@/views/document.vue')
+    },
+    {
+      path: '/new-transaction',
+      name: 'NewTransaction',
+      meta: {
+        footer: false,
+        header: {
+          leading: false,
+          title: 'Add Transaction',
+          traning: {
+            text: 'Add'
+          }
+        }
+      },
+      component: () => import('@/views/new-transaction.vue'),
+      children: [
+        {
+          path: 'more-details',
+          name: 'NewTransactionMoreDetails',
+          // component: {
+          //   // 'more-details': () => import('@/views/new-transaction-more-details.vue')
+          //   'more-details': NewTransactionMoreDetails
+          // }
+          component: () => import('@/views/new-transaction-more-details.vue')
+        }
+      ]
+    },
+    {
+      path: '/select-category',
+      name: 'SelectCategory',
+      meta: {
+        footer: false,
+        header: {
+          leading: false,
+          title: 'Select a Category',
+          traning: {
+            text: 'cancel'
+          }
+        }
+      },
+      component: () => import('@/views/select-category.vue')
     }
   ]
 });

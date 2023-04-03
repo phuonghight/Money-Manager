@@ -10,10 +10,10 @@ const options = ref(PROFILE_OPTIONS);
 </script>
 
 <template>
-  <div v-if="!user" class="text- text-center mt-10">Profile's user is loading...</div>
+  <div v-if="!user" class="text- text-center">Profile's user is loading...</div>
   <div v-else>
     <div class="row">
-      <div class="my-8 flex flex-col items-center">
+      <div class="mb-8 mt-4 flex flex-col items-center">
         <div class="mb-4 w-20 h-20 overflow-hidden rounded-full object-cover">
           <img
             src="https://i.pinimg.com/550x/dd/25/df/dd25df36b75a4765cd4ddef557e9aafe.jpg"

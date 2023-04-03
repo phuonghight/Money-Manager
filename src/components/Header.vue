@@ -10,7 +10,7 @@ const user = computed(() => auth.currentUser);
 </script>
 
 <template>
-  <header v-if="header" id="header" class="px-8 my-5">
+  <header v-if="header" id="header" class="px-8 py-6">
     <div class="flex items-center justify-between">
       <div class="flex items-center">
         <div v-if="header.leading" class="w-12 h-12 object-cover overflow-hidden rounded-full mr-4">
@@ -24,9 +24,12 @@ const user = computed(() => auth.currentUser);
           {{ header.leading ? 'Hi, ' + user.displayName : header.title }}
         </div>
       </div>
-      <router-link :to="header['icon-router']">
+
+      <router-link v-if="header.icon" :to="header['icon-router']">
         <i class="t2ico text-2xl" :class="header.icon"></i>
       </router-link>
+
+      <div v-else class="text-dark font-semibold">{{ header.traning.text }}</div>
     </div>
   </header>
 </template>
