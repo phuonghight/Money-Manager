@@ -11,7 +11,7 @@ const { error, isPending, onLogin } = useLogin();
 const loginHanler = async () => {
   await onLogin(email.value, password.value);
   console.log('succesful login');
-  if (!error.value) router.push({ name: 'Home', params: {} });
+  if (!error.value) router.push({ name: 'Profile', params: {} });
 };
 </script>
 
