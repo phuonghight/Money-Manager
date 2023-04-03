@@ -13,21 +13,45 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
+      meta: {
+        header: {
+          title: 'Home',
+          icon: 't2ico-notification'
+        }
+      },
       component: () => import('@/views/home.vue')
     },
     {
       path: '/budget',
       name: 'Budget',
+      meta: {
+        header: {
+          title: 'My Budget',
+          icon: 't2ico-document'
+        }
+      },
       component: () => import('@/views/budget.vue')
     },
     {
       path: '/report',
       name: 'Report',
+      meta: {
+        header: {
+          title: 'My Report',
+          icon: 't2ico-filter'
+        }
+      },
       component: () => import('@/views/report.vue')
     },
     {
       path: '/profile',
       name: 'Profile',
+      meta: {
+        header: {
+          title: 'My Profile',
+          icon: 't2ico-setting'
+        }
+      },
       component: () => import('@/views/profile.vue'),
       beforeEnter: beforeProfileEnter
     },
