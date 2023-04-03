@@ -11,6 +11,21 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      name: 'Home',
+      component: () => import('@/views/home.vue')
+    },
+    {
+      path: '/budget',
+      name: 'Budget',
+      component: () => import('@/views/budget.vue')
+    },
+    {
+      path: '/report',
+      name: 'Report',
+      component: () => import('@/views/report.vue')
+    },
+    {
       path: '/profile',
       name: 'Profile',
       component: () => import('@/views/profile.vue'),
@@ -35,9 +50,6 @@ const router = createRouter({
     {
       path: '/logout',
       name: 'Logout',
-      meta: {
-        layout: 'auth'
-      },
       component: () => import('@/views/logout.vue')
     }
   ]
