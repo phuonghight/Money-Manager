@@ -10,7 +10,7 @@ const options = ref(PROFILE_OPTIONS);
 </script>
 
 <template>
-  <div v-if="!user">Loading...</div>
+  <div v-if="!user" class="text- text-center mt-10">Profile's user is loading...</div>
   <div v-else>
     <div class="row">
       <div class="my-12 flex flex-col items-center">
