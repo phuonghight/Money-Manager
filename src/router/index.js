@@ -16,7 +16,11 @@ const router = createRouter({
       meta: {
         header: {
           title: 'Home',
-          icon: 't2ico-notification'
+          icon: 't2ico-notification',
+          'icon-router': {
+            name: 'Notification',
+            params: {}
+          }
         }
       },
       component: () => import('@/views/home.vue')
@@ -27,7 +31,11 @@ const router = createRouter({
       meta: {
         header: {
           title: 'My Budget',
-          icon: 't2ico-document'
+          icon: 't2ico-document',
+          'icon-router': {
+            name: 'Document',
+            params: {}
+          }
         }
       },
       component: () => import('@/views/budget.vue')
@@ -38,7 +46,11 @@ const router = createRouter({
       meta: {
         header: {
           title: 'My Report',
-          icon: 't2ico-filter'
+          icon: 't2ico-filter',
+          'icon-router': {
+            name: 'Filter',
+            params: {}
+          }
         }
       },
       component: () => import('@/views/report.vue')
@@ -49,7 +61,11 @@ const router = createRouter({
       meta: {
         header: {
           title: 'My Profile',
-          icon: 't2ico-setting'
+          icon: 't2ico-setting',
+          'icon-router': {
+            name: 'Setting',
+            params: {}
+          }
         }
       },
       component: () => import('@/views/profile.vue'),
@@ -75,6 +91,26 @@ const router = createRouter({
       path: '/logout',
       name: 'Logout',
       component: () => import('@/views/logout.vue')
+    },
+    {
+      path: '/setting',
+      name: 'Setting',
+      component: () => import('@/views/setting.vue')
+    },
+    {
+      path: '/filter',
+      name: 'Filter',
+      component: () => import('@/views/filter.vue')
+    },
+    {
+      path: '/notification',
+      name: 'Notification',
+      component: () => import('@/views/notification.vue')
+    },
+    {
+      path: '/document',
+      name: 'Document',
+      component: () => import('@/views/document.vue')
     }
   ]
 });
