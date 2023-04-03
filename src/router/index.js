@@ -15,6 +15,7 @@ const router = createRouter({
       name: 'Home',
       meta: {
         header: {
+          leading: true,
           title: 'Home',
           icon: 't2ico-notification',
           'icon-router': {
@@ -29,6 +30,7 @@ const router = createRouter({
       path: '/budget',
       name: 'Budget',
       meta: {
+        leading: false,
         header: {
           title: 'My Budget',
           icon: 't2ico-document',
@@ -45,6 +47,7 @@ const router = createRouter({
       name: 'Report',
       meta: {
         header: {
+          leading: false,
           title: 'My Report',
           icon: 't2ico-filter',
           'icon-router': {
@@ -59,6 +62,7 @@ const router = createRouter({
       path: '/profile',
       name: 'Profile',
       meta: {
+        leading: false,
         header: {
           title: 'My Profile',
           icon: 't2ico-setting',
