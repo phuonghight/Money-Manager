@@ -140,7 +140,8 @@ const router = createRouter({
           },
           title: 'Add Transaction',
           traning: {
-            text: 'Add'
+            text: 'Add',
+            method: 'addNewTransaction'
           }
         }
       },
@@ -158,7 +159,8 @@ const router = createRouter({
           },
           title: 'Select a Category',
           traning: {
-            text: 'cancel'
+            text: 'Cancel',
+            method: 'cancelSelectCategory'
           }
         }
       },

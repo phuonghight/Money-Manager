@@ -1,7 +1,11 @@
 <script setup>
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { auth } from '@/config/firebase';
+import { auth, firestore } from '@/config/firebase';
+import { addDoc, collection } from '@firebase/firestore';
+import { useSubmitForm } from '@/stores/useSubmitForm';
+
+const { formdata, onSubmit } = useSubmitForm();
 
 const route = useRoute();
 const router = useRouter();
@@ -11,6 +15,23 @@ const user = computed(() => auth.currentUser);
 
 const goBack = () => {
   router.go(-1);
+};
+
+const onClick = async () => {
+  if (header.value.traning.method === 'addNewTransaction') {
+    console.log(formdata.value);
+    try {
+      const docRef = await addDoc(collection(firestore, 'transactions'), formdata.value);
+
+      console.log('Document written with ID:' + docRef.id);
+    } catch (error) {
+      console.log('Error adding document: ' + error);
+    } finally {
+      router.push({ name: 'Report', params: {} });
+    }
+  } else if (header.value.traning.method === 'cancelSelectCategory') {
+    console.log('cancel select category');
+  }
 };
 </script>
 
@@ -28,7 +49,8 @@ const goBack = () => {
             class="w-full h-auto"
           />
         </div>
-        <div v-else-if="header.leading['go-back']" class="transform rotate-180">
+
+        <div v-else-if="header.leading['go-back']" class="transform rotate-180 mr-2">
           <button @click="goBack">
             <i class="t2ico t2ico-arrow-right text-2xl"></i>
           </button>
@@ -42,7 +64,7 @@ const goBack = () => {
         <i class="t2ico text-2xl" :class="header.icon"></i>
       </router-link>
 
-      <div v-else class="text-dark font-semibold">{{ header.traning.text }}</div>
+      <div @click="onClick" v-else class="text-dark font-semibold">{{ header.traning.text }}</div>
     </div>
   </header>
 </template>
