@@ -27,7 +27,8 @@ const router = createRouter({
           }
         }
       },
-      component: () => import('@/views/home.vue')
+      component: () => import('@/views/home.vue'),
+      beforeEnter: beforeProfileEnter
     },
     {
       path: '/budget',

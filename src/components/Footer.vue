@@ -14,7 +14,7 @@ const pushToNewTransactionView = () => {
     <ul class="flex justify-around items-center h-full">
       <li v-for="(item, index) in FOOTER_NAV_ITEMS" :key="index">
         <router-link :to="item.router" class="p-4 flex justify-center items-center">
-          <i class="text-2xl text-dark" :class="item.icon"></i>
+          <i class="text-2xl text-dark transition-all" :class="item.icon"></i>
         </router-link>
       </li>
     </ul>
@@ -24,7 +24,7 @@ const pushToNewTransactionView = () => {
     ></div>
 
     <div
-      class="absolute h-12 w-12 bg-primary -top-6 left-1/2 transform -translate-x-1/2 rounded-full flex justify-center items-center"
+      class="absolute h-12 w-12 bg-primary -top-6 left-1/2 transform -translate-x-1/2 rounded-full flex justify-center items-center cursor-pointer"
       @click="pushToNewTransactionView"
     >
       <i class="t2ico t2ico-plus text-white text-2xl"></i>
@@ -41,5 +41,7 @@ footer#footer ul li:nth-child(3) {
 }
 footer#footer .router-link-active.router-link-exact-active i {
   color: #0012ff;
+  /* font-size: 28px; */
+  transform: translateY(-15%);
 }
 </style>
