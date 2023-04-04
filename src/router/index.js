@@ -1,9 +1,7 @@
 import { auth } from '@/config/firebase';
 import { createRouter, createWebHistory } from 'vue-router';
 
-import NewTransactionMoreDetails from '@/views/new-transaction-more-details.vue';
-
-const beforeProfileEnter = (to, from, next) => {
+const beforeAppEnter = (to, from, next) => {
   const user = auth.currentUser;
   if (!user) next({ name: 'Login', params: {} });
   else next();
@@ -18,7 +16,9 @@ const router = createRouter({
       meta: {
         footer: true,
         header: {
-          leading: true,
+          leading: {
+            avt: true
+          },
           title: 'Home',
           icon: 't2ico-notification',
           'icon-router': {
@@ -28,7 +28,7 @@ const router = createRouter({
         }
       },
       component: () => import('@/views/home.vue'),
-      beforeEnter: beforeProfileEnter
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/budget',
@@ -45,7 +45,8 @@ const router = createRouter({
           }
         }
       },
-      component: () => import('@/views/budget.vue')
+      component: () => import('@/views/budget.vue'),
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/report',
@@ -62,7 +63,8 @@ const router = createRouter({
           }
         }
       },
-      component: () => import('@/views/report.vue')
+      component: () => import('@/views/report.vue'),
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/profile',
@@ -80,7 +82,7 @@ const router = createRouter({
         }
       },
       component: () => import('@/views/profile.vue'),
-      beforeEnter: beforeProfileEnter
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/login',
@@ -106,22 +108,26 @@ const router = createRouter({
     {
       path: '/setting',
       name: 'Setting',
-      component: () => import('@/views/setting.vue')
+      component: () => import('@/views/setting.vue'),
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/filter',
       name: 'Filter',
-      component: () => import('@/views/filter.vue')
+      component: () => import('@/views/filter.vue'),
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/notification',
       name: 'Notification',
-      component: () => import('@/views/notification.vue')
+      component: () => import('@/views/notification.vue'),
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/document',
       name: 'Document',
-      component: () => import('@/views/document.vue')
+      component: () => import('@/views/document.vue'),
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/new-transaction',
@@ -129,7 +135,9 @@ const router = createRouter({
       meta: {
         footer: false,
         header: {
-          leading: false,
+          leading: {
+            'go-back': true
+          },
           title: 'Add Transaction',
           traning: {
             text: 'Add'
@@ -137,17 +145,7 @@ const router = createRouter({
         }
       },
       component: () => import('@/views/new-transaction.vue'),
-      children: [
-        {
-          path: 'more-details',
-          name: 'NewTransactionMoreDetails',
-          // component: {
-          //   // 'more-details': () => import('@/views/new-transaction-more-details.vue')
-          //   'more-details': NewTransactionMoreDetails
-          // }
-          component: () => import('@/views/new-transaction-more-details.vue')
-        }
-      ]
+      beforeEnter: beforeAppEnter
     },
     {
       path: '/select-category',
@@ -155,14 +153,17 @@ const router = createRouter({
       meta: {
         footer: false,
         header: {
-          leading: false,
+          leading: {
+            'go-back': true
+          },
           title: 'Select a Category',
           traning: {
             text: 'cancel'
           }
         }
       },
-      component: () => import('@/views/select-category.vue')
+      component: () => import('@/views/select-category.vue'),
+      beforeEnter: beforeAppEnter
     }
   ]
 });
