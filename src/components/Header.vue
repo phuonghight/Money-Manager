@@ -5,7 +5,7 @@ import { auth, firestore } from '@/config/firebase';
 import { addDoc, collection } from '@firebase/firestore';
 import { useSubmitForm } from '@/stores/useSubmitForm';
 
-const { formdata, onSubmit } = useSubmitForm();
+const { formdata } = useSubmitForm();
 
 const route = useRoute();
 const router = useRouter();
@@ -31,6 +31,7 @@ const onClick = async () => {
     }
   } else if (header.value.traning.method === 'cancelSelectCategory') {
     console.log('cancel select category');
+    goBack();
   }
 };
 </script>

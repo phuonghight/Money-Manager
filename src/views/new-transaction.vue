@@ -1,13 +1,17 @@
 <script setup>
+import { categoriesStore } from '@/stores/categoriesStore';
 import { useSubmitForm } from '@/stores/useSubmitForm';
-import { ref, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 
 const isMoreDetails = ref(false);
 
-let { formdata, onSubmit } = useSubmitForm();
+const { formdata } = useSubmitForm();
+
+const { categories } = categoriesStore();
+const target = computed(() => categories.find((cat) => cat.isSelected));
 
 const total = ref('');
-const category = ref('');
+const name = ref('');
 const note = ref('');
 const location = ref('');
 const withPerson = ref('');
@@ -19,24 +23,31 @@ const time = ref(
 );
 
 const onAddNewTransaction = () => {
+  console.log(target.value);
   const transaction = {
     total: total.value,
-    category: category.value,
     note: note.value,
+    name: name.value,
+    category: {
+      color: target.value?.color,
+      name: target.value?.name
+    },
     time: time.value,
-    location: location.value,
-    withPerson: withPerson.value
+    location: location.value || '',
+    withPerson: withPerson.value || ''
   };
+
   formdata.value = transaction;
+  console.log(formdata.value);
 };
 
 watchEffect(() => {
-  onSubmit(onAddNewTransaction);
+  onAddNewTransaction();
 });
 </script>
 
 <template>
-  <form action="" @submit.prevent="onAddNewTransaction">
+  <form action="">
     <div class="row px-8 py-4 mx-auto bg-white rounded-lg">
       <label for="total">
         <div class="flex justify-between items-center">
@@ -57,19 +68,19 @@ watchEffect(() => {
         </div>
       </label>
 
-      <label for="category">
+      <label for="name">
         <div class="flex justify-between items-center">
           <div class="w-12 text-right">
-            <div class="w-8 h-8 bg-red rounded-full inline-block"></div>
+            <i class="t2ico t2ico-presentation text-2xl"></i>
           </div>
           <div class="border-b py-2 border-b-gray-200 ml-5 flex flex-col flex-1">
             <input
               type="text"
-              name="category"
-              id="category"
-              class="outline-none text-2xl text-dark w-full bg-white"
-              placeholder="Select a category"
-              v-model="category"
+              name="name"
+              id="name"
+              class="outline-none text-xl text-dark w-full bg-white"
+              placeholder="Name"
+              v-model="name"
             />
           </div>
         </div>
@@ -92,6 +103,23 @@ watchEffect(() => {
           </div>
         </div>
       </label>
+
+      <router-link
+        :to="{ name: 'SelectCategory', params: {} }"
+        class="flex justify-between items-center"
+      >
+        <div class="w-12 text-right">
+          <div
+            class="w-8 h-8 rounded-full inline-block"
+            :style="{ backgroundColor: target ? target.color : '#F28080' }"
+          ></div>
+        </div>
+        <div class="w-full border-b py-2 border-b-gray-200 ml-5 flex flex-col flex-1">
+          <div class="outline-none text-2xl text-dark w-full bg-white">
+            {{ target?.name || 'Select a category' }}
+          </div>
+        </div>
+      </router-link>
 
       <label for="time">
         <div class="flex justify-between items-center">

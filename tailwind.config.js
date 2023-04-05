@@ -8,6 +8,8 @@ module.exports = {
         primary: '#0012FF',
         green: '#67D4CA',
         red: '#F28080',
+        'gray-primary': '#9e9e9f',
+        'dark-light': '#e1e1e1',
         'bg-primary': '#f8fafb'
       }
     }

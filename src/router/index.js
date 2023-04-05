@@ -154,9 +154,7 @@ const router = createRouter({
       meta: {
         footer: false,
         header: {
-          leading: {
-            'go-back': true
-          },
+          leading: {},
           title: 'Select a Category',
           traning: {
             text: 'Cancel',
