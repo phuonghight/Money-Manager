@@ -14,7 +14,7 @@ const { error, isPending, onRegister } = useRegister();
 const registerHandler = async () => {
   await onRegister(email.value, password.value, fullname.value);
 
-  if (!error.value) router.push({ name: 'Profile', params: {} });
+  if (!error.value) router.push({ name: 'Home', params: {} });
 };
 </script>
 

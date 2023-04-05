@@ -10,7 +10,7 @@ const { error, isPending, onLogin } = useLogin();
 
 const loginHanler = async () => {
   await onLogin(email.value, password.value);
-  if (!error.value) router.push({ name: 'Profile', params: {} });
+  if (!error.value) router.push({ name: 'Home', params: {} });
 };
 </script>
 
